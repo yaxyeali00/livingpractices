@@ -3,134 +3,219 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sustainable Living Practices</title>
+    <title>Sustainable Living Practices - Dynamic Organizer</title>
     <!-- Tailwind CSS CDN for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Inter for a modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* Custom CSS for a sleek look and Inter font */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6; /* Light gray background */
+            /* Dynamic gradient background for a fresh feel */
+            background: linear-gradient(135deg, #a8dadc, #457b9d, #1d3557); /* Shades of blue/green */
             display: flex;
+            flex-direction: column; /* Stack title and organizer vertically */
             justify-content: center;
             align-items: center;
             min-height: 100vh; /* Ensure it takes full viewport height */
             margin: 0;
-            padding: 20px; /* Add some padding for smaller screens */
+            padding: 20px; /* Add some padding for overall content */
             box-sizing: border-box; /* Include padding in element's total width and height */
+            overflow-x: hidden; /* Prevent horizontal scroll on small screens */
         }
 
+        /* Main title styling */
+        .main-title {
+            color: #ffffff; /* White text for contrast */
+            font-size: 3.5rem; /* Larger title for prominence */
+            font-weight: 800; /* Extra bold */
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+            margin-bottom: 40px; /* Space below the title */
+            text-align: center;
+            line-height: 1.1; /* Tighter line height for large text */
+            padding: 0 10px; /* Horizontal padding for responsiveness */
+        }
+
+        /* Container for the graphic organizer nodes */
         .organizer-container {
             display: flex;
             flex-wrap: wrap; /* Allow items to wrap on smaller screens */
-            gap: 24px; /* Space between items */
+            gap: 24px; /* Space between cards */
             justify-content: center; /* Center items when they wrap */
-            max-width: 1200px; /* Max width for the organizer */
-            width: 100%;
+            max-width: 1200px; /* Max width for the organizer content */
+            width: 100%; /* Take full width within max-width */
+            /* Initial fade-in animation for a smooth entrance */
+            animation: fadeIn 1s ease-out forwards;
+            opacity: 0; /* Start invisible for animation */
         }
 
+        /* Keyframe animation for fade-in effect */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Styling for individual graphic organizer nodes (cards) */
         .organizer-node {
-            background-color: #ffffff; /* White background for nodes */
-            border: 2px solid #e5e7eb; /* Light border */
-            border-radius: 16px; /* More rounded corners */
+            background-color: #ffffff; /* White background for clean look */
+            border: 2px solid #e0f2f7; /* Lighter, subtle border */
+            border-radius: 16px; /* Rounded corners for softness */
             padding: 24px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Subtle shadow */
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1); /* Slightly stronger shadow */
+            /* Smooth transitions for all hover effects */
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), /* Custom cubic-bezier for springy effect */
+                        box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+                        background-color 0.4s ease-in-out,
+                        border-color 0.4s ease-in-out;
             cursor: pointer;
-            flex: 1 1 300px; /* Allow nodes to grow, shrink, and have a base width of 300px */
+            flex: 1 1 300px; /* Flex properties for responsive sizing */
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            min-height: 180px; /* Minimum height for consistency */
-            position: relative; /* Needed for absolute positioning of description */
+            min-height: 220px; /* Minimum height for consistency and content */
+            position: relative; /* Needed for positioning elements inside */
             overflow: hidden; /* Hide overflow from description transition */
+            will-change: transform, box-shadow; /* Optimize for animations */
         }
 
+        /* Unique background and border colors on hover for each node type */
+        .organizer-node[data-color="green"]:hover { background-color: #d1fae5; border-color: #34d399; } /* Green accent */
+        .organizer-node[data-color="blue"]:hover { background-color: #e0f2fe; border-color: #60a5fa; } /* Blue accent */
+        .organizer-node[data-color="yellow"]:hover { background-color: #fefcbf; border-color: #fbbf24; } /* Yellow accent */
+        .organizer-node[data-color="red"]:hover { background-color: #fee2e2; border-color: #ef4444; } /* Red accent */
+        .organizer-node[data-color="purple"]:hover { background-color: #ede9fe; border-color: #a78bfa; } /* Purple accent */
+        .organizer-node[data-color="teal"]:hover { background-color: #ccfbf1; border-color: #2dd4bf; } /* Teal accent */
+
+
+        /* Hover effect for the entire node: lift, scale, slight rotation, stronger shadow */
         .organizer-node:hover {
-            transform: translateY(-8px) scale(1.03); /* Lift and slightly scale on hover */
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); /* More prominent shadow on hover */
-            border-color: #60a5fa; /* Blue border on hover */
+            transform: translateY(-12px) scale(1.04) rotateZ(1deg); /* More pronounced lift and subtle rotate */
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25); /* Stronger shadow on hover */
         }
 
+        /* Styling for the emoji icons */
+        .node-icon {
+            font-size: 3.5rem; /* Large icon size */
+            margin-bottom: 16px;
+            transition: transform 0.3s ease-in-out; /* Smooth transition for icon effects */
+            line-height: 1; /* Remove extra space around emoji */
+        }
+
+        /* Icon effect on node hover: scales up and rotates */
+        .organizer-node:hover .node-icon {
+            transform: scale(1.15) rotate(5deg); /* Icon scales and rotates slightly on hover */
+        }
+
+        /* Styling for the node title */
         .node-title {
-            font-size: 1.5rem; /* Larger title */
+            font-size: 1.6rem; /* Slightly larger title */
             font-weight: 700;
-            color: #374151; /* Darker text for title */
+            color: #374151; /* Dark gray text */
             margin-bottom: 12px;
-            z-index: 1; /* Keep title above description */
+            z-index: 1; /* Ensure title stays above description */
+            transition: color 0.3s ease-in-out; /* Smooth color transition */
         }
 
+        /* Title color change on hover */
+        .organizer-node:hover .node-title {
+            color: #1a202c; /* Darker title on hover */
+        }
+
+        /* Styling for the hidden description */
         .node-description {
-            font-size: 1rem;
+            font-size: 1.05rem; /* Slightly larger description text */
             color: #6b7280; /* Gray text for description */
-            line-height: 1.5;
+            line-height: 1.6; /* Comfortable line height */
             opacity: 0; /* Initially hidden */
             max-height: 0; /* Initially no height */
-            overflow: hidden;
-            transition: opacity 0.3s ease-in-out, max-height 0.3s ease-in-out;
-            transform: translateY(10px); /* Slightly move down initially */
+            overflow: hidden; /* Hide overflowing text */
+            /* Smooth transitions for visibility and movement */
+            transition: opacity 0.4s ease-in-out, max-height 0.4s ease-in-out, transform 0.4s ease-in-out;
+            transform: translateY(20px); /* Start slightly moved down */
             pointer-events: none; /* Do not block events when hidden */
+            width: 100%; /* Ensure description takes full width within card */
         }
 
+        /* When node is active (hovered), show the description */
         .organizer-node.active .node-description {
-            opacity: 1; /* Visible on hover */
-            max-height: 100px; /* Sufficient height to show content */
-            transform: translateY(0); /* Move back to original position */
+            opacity: 1; /* Make visible */
+            max-height: 200px; /* Sufficient height to show content */
+            transform: translateY(0); /* Move to original position */
             pointer-events: auto; /* Allow events when visible */
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
+        /* Responsive adjustments for various screen sizes */
+        @media (max-width: 900px) {
             .organizer-node {
                 flex-basis: calc(50% - 24px); /* Two columns on medium screens */
             }
+            .main-title {
+                font-size: 2.8rem; /* Smaller title on medium screens */
+            }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 600px) {
             .organizer-node {
                 flex-basis: 100%; /* Single column on small screens */
+            }
+            .main-title {
+                font-size: 2.2rem; /* Even smaller title on small screens */
+                margin-bottom: 30px;
+            }
+            body {
+                padding: 15px; /* Adjust padding for very small screens */
             }
         }
     </style>
 </head>
 <body>
+    <!-- Main title of the graphic organizer -->
+    <h1 class="main-title">Sustainable Living Practices</h1>
+    
+    <!-- Container for all the graphic organizer nodes -->
     <div class="organizer-container">
         <!-- Node 1: Reduce, Reuse, Recycle -->
-        <div class="organizer-node" data-title="Reduce, Reuse, Recycle">
+        <div class="organizer-node" data-color="green">
+            <span class="node-icon" role="img" aria-label="Recycle icon">♻️</span>
             <h3 class="node-title">Reduce, Reuse, Recycle</h3>
-            <p class="node-description">Minimize waste by reducing consumption, reusing items, and recycling materials to lessen environmental impact.</p>
+            <p class="node-description">Minimize waste by consciously reducing consumption, finding creative ways to reuse items, and diligently recycling materials to lessen environmental impact and conserve resources.</p>
         </div>
 
         <!-- Node 2: Energy Conservation -->
-        <div class="organizer-node" data-title="Energy Conservation">
+        <div class="organizer-node" data-color="blue">
+            <span class="node-icon" role="img" aria-label="Lightbulb icon">💡</span>
             <h3 class="node-title">Energy Conservation</h3>
-            <p class="node-description">Save energy at home by using energy-efficient appliances, turning off lights, and unplugging electronics.</p>
+            <p class="node-description">Actively save energy at home by utilizing energy-efficient appliances, remembering to turn off lights when not needed, and unplugging electronics when not in use.</p>
         </div>
 
         <!-- Node 3: Sustainable Transportation -->
-        <div class="organizer-node" data-title="Sustainable Transportation">
+        <div class="organizer-node" data-color="yellow">
+            <span class="node-icon" role="img" aria-label="Bicycle icon">🚲</span>
             <h3 class="node-title">Sustainable Transportation</h3>
-            <p class="node-description">Opt for walking, cycling, public transport, or electric vehicles to reduce carbon emissions from travel.</p>
+            <p class="node-description">Choose eco-friendly ways to travel such as walking, cycling, using public transportation, or opting for electric vehicles to significantly reduce carbon emissions.</p>
         </div>
 
         <!-- Node 4: Grow Your Own Food -->
-        <div class="organizer-node" data-title="Grow Your Own Food">
+        <div class="organizer-node" data-color="red">
+            <span class="node-icon" role="img" aria-label="Plant icon">🌱</span>
             <h3 class="node-title">Grow Your Own Food</h3>
-            <p class="node-description">Cultivate a garden or balcony plants to get fresh produce, reduce food miles, and connect with nature.</p>
+            <p class="node-description">Cultivate your own fruits, vegetables, and herbs in a garden or on a balcony to enjoy fresh produce, minimize food miles, and foster a connection with nature.</p>
         </div>
 
         <!-- Node 5: Support Local & Ethical -->
-        <div class="organizer-node" data-title="Support Local & Ethical">
+        <div class="organizer-node" data-color="purple">
+            <span class="node-icon" role="img" aria-label="Hands shaking icon">🤝</span>
             <h3 class="node-title">Support Local & Ethical</h3>
-            <p class="node-description">Choose locally sourced, ethically produced goods to support fair practices and reduce your carbon footprint.</p>
+            <p class="node-description">Make a conscious effort to purchase goods that are locally sourced and ethically produced, thereby supporting fair practices and reducing your overall carbon footprint.</p>
         </div>
 
         <!-- Node 6: Water Conservation -->
-        <div class="organizer-node" data-title="Water Conservation">
+        <div class="organizer-node" data-color="teal">
+            <span class="node-icon" role="img" aria-label="Water drop icon">💧</span>
             <h3 class="node-title">Water Conservation</h3>
-            <p class="node-description">Conserve water by fixing leaks, taking shorter showers, and using water-saving devices in your home.</p>
+            <p class="node-description">Be mindful of water usage by promptly fixing any leaks, taking shorter showers, and installing water-saving devices throughout your home to conserve this precious resource.</p>
         </div>
     </div>
 
@@ -138,15 +223,15 @@
         // Get all elements with the class 'organizer-node'
         const organizerNodes = document.querySelectorAll('.organizer-node');
 
-        // Iterate over each node to add event listeners
+        // Iterate over each node to add event listeners for interactive effects
         organizerNodes.forEach(node => {
-            // Add 'mouseenter' event listener
+            // Add 'mouseenter' event listener for when the cursor enters the node area
             node.addEventListener('mouseenter', () => {
                 // Add the 'active' class to reveal description and apply hover effects
                 node.classList.add('active');
             });
 
-            // Add 'mouseleave' event listener
+            // Add 'mouseleave' event listener for when the cursor leaves the node area
             node.addEventListener('mouseleave', () => {
                 // Remove the 'active' class to hide description and revert effects
                 node.classList.remove('active');
