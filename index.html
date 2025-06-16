@@ -1,179 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Yaxye Ali Resume</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-/>
-<style>
-  :root {
-    --primary: #0054a6;
-    --background: #f9fafb;
-    --text-dark: #1f2937;
-    --text-light: #4b5563;
-    --accent: #3b82f6;
-  }
-  * {
-    box-sizing: border-box;
-  }
-  body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    background: var(--background);
-    color: var(--text-dark);
-  }
-  .container {
-    max-width: 850px;
-    margin: 40px auto;
-    background: white;
-    display: flex;
-    /* removed border-radius */
-    box-shadow: 0 10px 25px rgb(0 0 0 / 0.05);
-    min-height: 650px;
-  }
-  .sidebar {
-    width: 260px;
-    background: var(--primary);
-    color: white;
-    padding: 40px 30px;
-    /* removed border-radius */
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: 40px;
-  }
-  .sidebar h1 {
-    font-weight: 700;
-    font-size: 28px;
-    margin-bottom: 6px;
-  }
-  .sidebar p {
-    font-size: 14px;
-    opacity: 0.85;
-    line-height: 1.4;
-    margin-bottom: 16px;
-  }
-  .sidebar p i {
-    margin-right: 8px;
-    width: 16px;
-    text-align: center;
-  }
-  .sidebar section {
-    margin: 0;
-  }
-  .sidebar h2 {
-    font-weight: 600;
-    font-size: 18px;
-    margin-bottom: 12px;
-    border-bottom: 2px solid var(--accent);
-    padding-bottom: 4px;
-  }
-  .sidebar ul {
-    list-style: none;
-    padding-left: 0;
-  }
-  .sidebar ul li {
-    font-size: 14px;
-    margin-bottom: 10px;
-  }
-  .main {
-    flex: 1;
-    padding: 40px 50px;
-    /* removed border-radius */
-  }
-  .main h2 {
-    font-weight: 700;
-    font-size: 24px;
-    color: var(--primary);
-    border-bottom: 3px solid var(--accent);
-    padding-bottom: 6px;
-    margin-bottom: 24px;
-  }
-  .main section {
-    margin-bottom: 36px;
-  }
-  .main h3 {
-    font-weight: 600;
-    font-size: 18px;
-    margin-bottom: 4px;
-  }
-  .main .org {
-    font-style: italic;
-    color: var(--text-light);
-    margin-bottom: 6px;
-  }
-  .main .date {
-    font-size: 13px;
-    color: var(--text-light);
-    margin-bottom: 12px;
-  }
-  .main ul {
-    padding-left: 20px;
-  }
-  .main ul li {
-    margin-bottom: 8px;
-  }
-  a {
-    color: white;
-    text-decoration: none;
-  }
-  a:hover {
-    text-decoration: underline;
-  }
-  @media(max-width: 700px) {
-    .container {
-      flex-direction: column;
-      max-width: 95%;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Yaxye Ali Resume</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+  <style>
+    :root {
+      --primary: #0054a6; /* Original blue color */
+      --secondary: #65748b; /* Soft grey for text */
+      --background: #f4f6f9;
+      --accent: #6c90d3;
+      --white: #ffffff;
     }
-    .sidebar {
-      width: 100%;
-      /* removed border-radius */
-      padding: 20px 25px;
-    }
-    .main {
-      padding: 30px 25px 40px 25px;
-      /* removed border-radius */
-    }
-  }
 
-  /* Print styles with zero margins */
-  @page {
-    margin: 0;
-  }
-  @media print {
-    html, body {
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      background: white;
-      height: 100%;
     }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--background);
+      color: var(--primary);
+      line-height: 1.6;
+    }
+
     .container {
-      max-width: 100%;
-      width: 100vw;
-      min-height: 100vh;
-      margin: 0;
-      padding: 0;
-      box-shadow: none;
-      border-radius: 0;
-      display: block;
+      display: flex;
+      max-width: 800px; /* Constrained width for letter-size paper */
+      margin: 40px auto;
+      background: var(--white);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      /* Removed rounded corners */
     }
-    .sidebar, .main {
-      padding: 10px 15px;
-      width: 100%;
-    }
+
     .sidebar {
-      border-radius: 0;
-      background: #0054a6;
+      width: 230px; /* Sidebar width optimized for letter-size */
+      background: var(--primary);
+      color: var(--white);
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px; /* Reduced gap for a balanced look */
     }
+
+    .sidebar h1 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .sidebar p {
+      font-size: 13px;
+      opacity: 0.85;
+    }
+
+    .sidebar ul {
+      list-style-type: disc;
+      padding-left: 20px; /* Added padding for bullet points */
+    }
+
+    .sidebar ul li {
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
     .main {
-      border-radius: 0;
+      flex: 1;
+      padding: 30px;
+      background: var(--white);
+      border-left: 2px solid #f0f0f0;
     }
-  }
-</style>
+
+    .main h2 {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 12px;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 6px;
+    }
+
+    .main h3 {
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .main p, .main ul li {
+      font-size: 13px; /* Uniform font size for all text in main content */
+      margin-bottom: 10px;
+    }
+
+    .main .org {
+      font-style: italic;
+      color: var(--secondary);
+    }
+
+    .main .date {
+      font-size: 12px;
+      color: var(--secondary);
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        margin: 20px;
+      }
+
+      .sidebar {
+        width: 100%;
+        padding: 20px;
+      }
+
+      .main {
+        padding: 20px;
+      }
+    }
+
+    /* Print Styles */
+    @media print {
+      body {
+        font-size: 12px; /* Slightly smaller text for print */
+      }
+
+      .container {
+        width: 100%;
+        padding: 0;
+        box-shadow: none;
+        display: block;
+        margin: 20px auto;
+        max-width: 100%;
+      }
+
+      .sidebar, .main {
+        width: 100%;
+        padding: 20px;
+        margin: 0;
+      }
+
+      .sidebar {
+        background: var(--primary);
+        display: none; /* Hide sidebar in print view */
+      }
+
+      .main {
+        border-radius: 0;
+        margin: 0;
+        padding: 20px;
+      }
+
+      .main h2 {
+        font-size: 18px;
+      }
+
+      .main ul li {
+        font-size: 12px;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -181,11 +173,11 @@
   <aside class="sidebar">
     <div>
       <h1>Yaxye Ali</h1>
-      <p><i class="fas fa-map-marker-alt"></i>St. Cloud, MN</p>
-      <p><i class="fas fa-phone"></i>320-470-8036</p>
+      <p><i class="fas fa-map-marker-alt"></i> St. Cloud, MN</p>
+      <p><i class="fas fa-phone"></i> 320-470-8036</p>
       <p>
         <i class="fas fa-envelope"></i>
-        <a href="mailto:YaxyeAli00@gmail.com">YaxyeAli00@gmail.com</a>
+        <span style="color: var(--white);">YaxyeAli00@gmail.com</span>
       </p>
     </div>
 
